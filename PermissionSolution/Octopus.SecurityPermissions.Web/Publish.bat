@@ -1,6 +1,6 @@
 @echo off
 set ProjectName=Octopus.SecurityPermissions.Web
-set PublishDestination=D:\deploy\joyyang\permissions.joyyang.com
+set PublishDestination=D:\deploy\octopus\permissions.devfx.net
 
 :build
 echo Publishing website...
