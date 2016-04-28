@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>Octopus.EventBus</id>
+		<version>$version$</version>
+		<title>Octopus EventBus</title>
+		<authors>R2</authors>
+		<description>Octopus EventBus</description>
+	</metadata>
+</package>
