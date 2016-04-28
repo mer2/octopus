@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+	<meta name="Description" content="" />
+	<meta name="Keywords" content="" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/joyyang/css/common/reset.css" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/joyyang/css/admin/style.css" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/libs/ligerui/skins/Aqua/css/ligerui-all.css" />
+	<script src="@Page.ResourceUrl/joyyang/js/common/joy.common.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		try { document.domain = "joyyang.com"; } catch (e) { }
+		if (window == top) {
+			if(!queryString("nif")) {
+				window.location.href = "@Octopus.Web.AdminBase.PassportAuthentication.DefaultUrl/?url=" + encodeURIComponent(window.location.href) + "&title=" + encodeURIComponent(window.document.title);
+			}
+		}
+	</script>
+	<script src="@Page.ResourceUrl/??base/js/jquery.js,base/js/plugin/joy.validate.js,joyyang/js/admin/common.js" type="text/javascript"></script>
+	@RenderSection("header", false)
+</head>
+<body>
+    @RenderBody()
+	<script src="@Page.ResourceUrl/??libs/ligerui/js/ligerui.all.js,joyyang/js/admin/grid.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function () {
+			$(".admin_openTab").click(function () {
+				var $this = $(this);
+				$.joyadmin.openUrl($this.attr("href"), $this.attr("title"));
+				return false;
+			});
+			$(".admin_closeTab").click(function () {
+				$.joyadmin.closeWindow(); return false;
+			});
+		});
+	</script>
+	@RenderSection("scripts", false)
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@{
+	Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+@section header {
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/base/css/plugin/jquery.ui.custom.css" />
+	<meta name="seajsmeta" lang="data-main" content="staticHuyu/admin/huyu-config" />
+	@RenderSection("header", false)
+}
+@RenderBody()
+@section scripts {
+	@RenderSection("scripts", false)
+}

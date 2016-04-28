@@ -1,0 +1,14 @@
+﻿@{
+	Layout = "_Layout.cshtml";
+}
+@section header {
+    <link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/joyyang/css/huyu/admin.css" />
+	<meta name="seajsmeta" lang="data-main" content="staticHuyu/admin/huyu-config" />
+    @RenderSection("header", false)
+}
+<div class="manage-container">
+	@RenderBody()
+</div>
+@section scripts {
+	@RenderSection("scripts", false)
+}

@@ -1,0 +1,197 @@
+﻿@model Octopus.SecurityPermissions.Server.PermissionRelation
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "添加授权关系";
+}
+<div class="manage-container">
+	<div class="tool-box"><b>@ViewBag.Title</b></div>
+	<div class="content-box">
+		<form id="theForm" method="post">
+		<table class="manage-form-table" cellpadding="0" cellspacing="0">			
+			<tr>
+                <th><em>*</em>授权类型：</th>
+                <td><div class="input"><select id="TargetObject" name="TargetObject" class="input-text">
+					<option value="1">用户</option><option value="2">角色</option>
+				</select><p></p></div></td>
+            </tr>
+			<tr id="TargetObject_User">
+                <th><em>*</em>用&nbsp;户&nbsp;名：</th>
+                <td><div class="input"><input class="input-text" type="text" id="inputTargetValue" name="TargetValue" value="@Model.TargetValue" /><p></p></div></td>
+            </tr>
+			<tr id="TargetObject_Role" style="display:none">
+                <th><em>*</em>角&nbsp;&nbsp;&nbsp;&nbsp;色：</th>
+                <td><div class="input"><select id="selectTargetValue" name="TargetValue" class="input-text"><option value="">（请选择）</option>
+				@foreach(var item in this.ViewBag.Roles) {
+					<option value="@item.RoleNo">@item.Title（@item.RoleNo）</option>
+				}
+				</select><p></p></div></td>
+            </tr>
+			<tr>
+                <th><em>*</em>权限资源：</th>
+                <td><div class="input"><select id="PermissionNo" name="PermissionNo" class="input-text"></select><p></p></div></td>
+            </tr>
+			<tr>
+                <th><em>*</em>所属应用：</th>
+                <td><div class="input"><input id="AppNo" name="AppNo" type="text" class="input-text" value="@Model.AppNo" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th><em>*</em>优先级：</th>
+                <td><div class="input"><input id="Priority" name="Priority" type="text" class="input-text" value="@Model.Priority" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th>权限附加值：</th>
+                <td><div class="input"><input id="PermissionValue" name="PermissionValue" type="text" class="input-text" value="@Model.PermissionValue" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th>备注：</th>
+                <td><div class="input"><textarea id="Remark" name="Remark" class="l-textarea input-textarea">@Model.Remark</textarea><p></p></div></td>
+            </tr>
+ 			<tr>
+                <th>是否授权：</th>
+                <td><div class="input">
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Granted", true, Model.Granted, new { @class = "inline-block", id = "Granted_True" })<span class="pad-l-5">是</span></label>
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Granted", false, !Model.Granted, new { @class = "inline-block", id = "Granted_False" })<span class="pad-l-5">否</span></label>
+				<p></p></div></td>
+            </tr>
+ 			<tr>
+                <th>是否有效：</th>
+                <td><div class="input">
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Enabled", true, Model.Enabled, new { @class = "inline-block", id="Enabled_True" })<span class="pad-l-5">是</span></label>
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Enabled", false, !Model.Enabled, new { @class = "inline-block", id="Enabled_False" })<span class="pad-l-5">否</span></label>
+				<p></p></div></td>
+            </tr>
+ 			<tr>
+                <th>是否可转授：</th>
+                <td><div class="input">
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Grantable", true, Model.Grantable, new { @class = "inline-block", id = "Grantable_True" })<span class="pad-l-5">是</span></label>
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Grantable", false, !Model.Grantable, new { @class = "inline-block", id = "Grantable_False" })<span class="pad-l-5">否</span></label>
+				<p></p></div></td>
+            </tr>
+		</table>
+		<div class="btn-div">
+			<input type="submit" value="提交" id="Button1" class="input-button" /> 
+			<input type="button" value="取消" class="input-button admin_closeTab" />
+		</div>
+		</form>
+	</div>
+</div>
+@section scripts {
+<script type="text/javascript">
+	function getResourceHtml(resources) {
+		var data = resources;
+		var dict = {};
+		$.each(data, function (idx, val) {
+			dict[val.PermissionNo] = val;
+		});
+		var idata = new Array();
+		for(var i = 0; i < data.length; i++) {
+			var n = data[i];
+			if(n.ParentNo) {
+				var pn = dict[n.ParentNo];
+				if(pn) {
+					var ch = pn["Children"];
+					if(!ch) {
+						ch = new Array();
+						pn["Children"] = ch;
+					}
+					ch.push(n);
+					n = null;
+				}
+			}
+			if(n) {
+				idata.push(n);
+			}
+		}
+		return '<option value="" lang="">（请选择）</option>' + resourceHtml(idata, "");
+	}
+	function resourceHtml(nodes, preHtml) {
+		var html = "";
+		if(nodes && nodes.length > 0) {
+			for(var i = 0; i < nodes.length; i++) {
+				var node = nodes[i];
+				html += '<option value="{0}" class="{1}">{2}（{0}）</option>'.format(node.PermissionNo, node.AppNo, preHtml + node.Title);
+				html += resourceHtml(node.Children, preHtml + "　　");
+			}
+		}
+		return html;
+	}
+	$(function () {
+		var trRole = $("#TargetObject_Role").detach();
+		var trUser = $("#TargetObject_User");
+		$("#TargetObject").change(function () {
+			var $this = $(this);
+			var val = $this.val();
+			if (val == "1") {
+				trRole.detach();
+				trUser.insertAfter($this.parents("tr")).show();
+			} else {
+				trUser.detach();
+				trRole.insertAfter($this.parents("tr")).show();
+			}
+		}).val("@Model.TargetObject").change();
+		var resources = (@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(this.ViewBag.PermissionResources)));
+		$("#PermissionNo").html(getResourceHtml(resources)).change(function () {
+			var selected = $("#PermissionNo option:selected");
+			$("#AppNo").val(selected.attr("class"));
+		}).val("@Model.PermissionNo");
+		$("#selectTargetValue").val("@Model.TargetValue");
+		var result = "@ViewBag.Result";
+		if (result) {
+			if (result.substr(0, 1) == "0") {
+				if (!confirm("操作成功！是否继续添加？")) {
+					$.joyadmin.closeWindow();
+				}
+			} else {
+				alert(result);
+			}
+		}
+		$("#theForm").validate({
+			rules: {
+				TargetObject: {
+					required: true
+				},
+				TargetValue: {
+					required: true
+				},
+				PermissionNo: {
+					required: true
+				},
+				Priority: {
+					required: true,
+					number: true
+				},
+				AppNo: {
+					required: true
+				}
+			},
+			messages: {
+				TargetObject: {
+					required: "请选择授权类型"
+				},
+				TargetValue: {
+					required: "请输入或选择授权对象"
+				},
+				PermissionNo: {
+					required: "请选择权限资源"
+				},
+				Priority: {
+					required: "请输入优先级（整数）",
+					number: "只允许输入整数"
+				},
+				AppNo: {
+					required: "请输入所属应用"
+				}
+			},
+			event: "blur",
+			errorElement: "span",
+			errorPlacement: function (error, element) {
+				element.next().html(error);
+			},
+			success: "valid",
+			submitHandler: function (form) {
+				form.submit();
+			}
+		});
+	});
+</script>
+}

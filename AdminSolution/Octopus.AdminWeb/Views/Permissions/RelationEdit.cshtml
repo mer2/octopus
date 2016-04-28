@@ -1,0 +1,102 @@
+﻿@model Octopus.SecurityPermissions.Server.PermissionRelation
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "编辑授权关系";
+}
+<div class="manage-container">
+	<div class="tool-box"><b>@ViewBag.Title</b></div>
+	<div class="content-box">
+		<form id="theForm" method="post">
+		<table class="manage-form-table" cellpadding="0" cellspacing="0">			
+			<tr>
+                <th><em>*</em>所属应用：</th>
+                <td><div class="input">@Model.AppNo</div><input type="hidden" name="AppNo" value="@Model.AppNo" /></td>
+            </tr>
+			<tr>
+                <th><em>*</em>授权类型：</th>
+                <td><div class="input">@(Model.TargetObject == 1 ? "用户" : "角色")</div><input type="hidden" name="TargetObject" value="@Model.TargetObject" /></td>
+            </tr>
+			<tr>
+                <th><em>*</em>授权对象：</th>
+                <td><div class="input">@Model.TargetValue</div><input type="hidden" name="TargetValue" value="@Model.TargetValue" /></td>
+            </tr>
+			<tr>
+                <th><em>*</em>权限资源：</th>
+                <td><div class="input">@(Model.PermissionResource != null ? Model.PermissionResource.Title : "") （@Model.PermissionNo）</div><input type="hidden" name="PermissionNo" value="@Model.PermissionNo" /></td>
+            </tr>
+			<tr>
+                <th><em>*</em>优先级：</th>
+                <td><div class="input"><input id="Priority" name="Priority" type="text" class="input-text" value="@Model.Priority" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th>权限附加值：</th>
+                <td><div class="input"><input id="PermissionValue" name="PermissionValue" type="text" class="input-text" value="@Model.PermissionValue" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th>备注：</th>
+                <td><div class="input"><textarea id="Remark" name="Remark" class="l-textarea input-textarea">@Model.Remark</textarea><p></p></div></td>
+            </tr>
+ 			<tr>
+                <th>是否授权：</th>
+                <td><div class="input">
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Granted", true, Model.Granted, new { @class = "inline-block", id = "Granted_True" })<span class="pad-l-5">是</span></label>
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Granted", false, !Model.Granted, new { @class = "inline-block", id = "Granted_False" })<span class="pad-l-5">否</span></label>
+				<p></p></div></td>
+            </tr>
+ 			<tr>
+                <th>是否有效：</th>
+                <td><div class="input">
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Enabled", true, Model.Enabled, new { @class = "inline-block", id="Enabled_True" })<span class="pad-l-5">是</span></label>
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Enabled", false, !Model.Enabled, new { @class = "inline-block", id="Enabled_False" })<span class="pad-l-5">否</span></label>
+				<p></p></div></td>
+            </tr>
+ 			<tr>
+                <th>是否可转授：</th>
+                <td><div class="input">@Model.Grantable</div><input type="hidden" name="Grantable" value="@Model.Grantable" /></td>
+            </tr>
+		</table>
+		<div class="btn-div">
+			<input type="submit" value="提交" id="Button1" class="input-button" /> 
+			<input type="button" value="取消" class="input-button admin_closeTab" />
+		</div>
+		</form>
+	</div>
+</div>
+@section scripts {
+<script type="text/javascript">
+	$(function () {
+		var result = "@ViewBag.Result";
+		if (result) {
+			if (result.substr(0, 1) == "0") {
+				alert("操作成功！");
+				$.joyadmin.closeWindow();
+			} else {
+				alert(result);
+			}
+		}
+		$("#theForm").validate({
+			rules: {
+				Priority: {
+					required: true,
+					number: true
+				}
+			},
+			messages: {
+				Priority: {
+					required: "请输入优先级（整数）",
+					number: "只允许输入整数"
+				}
+			},
+			event: "blur",
+			errorElement: "span",
+			errorPlacement: function (error, element) {
+				element.next().html(error);
+			},
+			success: "valid",
+			submitHandler: function (form) {
+				form.submit();
+			}
+		});
+	});
+</script>
+}

@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;    
+    ViewBag.ResourceUrl = "http://static.sdg-china.com/gameplus";
+
+    if (string.IsNullOrEmpty(ViewBag.Title))
+    {
+        ViewBag.Title = "极加管理后台";
+    }
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>    
+    <link rel="stylesheet" rev="stylesheet" href="@ViewBag.ResourceUrl/common/easyui/themes/gray/easyui.css" type="text/css" media="screen" />
+    <link rel="stylesheet" rev="stylesheet" href="@ViewBag.ResourceUrl/platform/admin/css/main.css" type="text/css" media="screen" />    
+</head>
+<body class="easyui-layout">
+    <div id="region_top" region="north" border="false">
+        <div id="site_top">
+            <div id="title">
+                <div id="system_title">@ViewBag.Title</div>
+                <div id="platform_name">GamePlus Management</div>
+            </div>
+            <div id="system_menu">
+                <ul>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>    
+    <div region="west" split="false" border="false" id="region_west">
+        <div id="site_menu" class="easyui-accordion" border="false" fit="false">
+            @RenderPage("~/Views/Shared/Menu.cshtml")
+        </div>
+        <div id="site_copyright">
+            Powered by GamePlus<br />
+            © 2011-2012, ShandaGames Inc.
+        </div>
+    </div>    
+    <div region="center">
+        <div id="site_tabs" class="easyui-tabs" fit="true" border="false" plain="true"></div>        
+    </div>
+
+    <script src="@ViewBag.ResourceUrl/common/js/jQuery/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="@ViewBag.ResourceUrl/common/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="@ViewBag.ResourceUrl/platform/admin/js/main.js" type="text/javascript"></script>    
+</body>
+</html>

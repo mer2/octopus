@@ -1,0 +1,45 @@
+﻿@{
+	var dataItem = (Joy.Admin.Extensions.DataManages.DataItem)this.ViewBag.DataItem;
+	var queryColumns = dataItem.GetQueryColumns();
+	var queryValues = this.ViewBag.QueryValues;
+}
+@if(queryColumns != null && queryColumns.Length > 0) {<div class="tool-box">
+	<form id="theForm" action="" method="post">
+	@foreach(var column in queryColumns) {
+		<span><label for="@column.Name">@column.Title：</label>@RenderPage("Controllers/" + column.QueryRenderType + ".cshtml", column.Name, queryValues[@column.Name])</span>
+	}
+		<input type="submit" value="搜索"/><input type="hidden" name="startIndex" id="startIndex" value="0" /><a href="@Url.Action("Add")/@dataItem.Name">添加</a>
+	</form>
+</div>}
+@if(this.ViewBag.ItemList != null) {<div class="list-bottom"><div class="page-box" id="topPageContainer"></div></div>	
+<div class="content-box">
+	<table class="manage-list-table" cellpadding="0" cellspacing="0">
+		<thead><tr>@foreach(var column in this.ViewBag.ItemColumns) {
+			<th>@column.Title</th>
+			 }</tr></thead>
+		<tbody>@foreach(var item in this.ViewBag.ItemList.Items) {
+			<tr>@foreach(var column in this.ViewBag.ItemColumns) {
+				<td>@(string.IsNullOrEmpty(column.ValueFormat) ? item[column.Name] : Html.Raw(Octopus.Utils.StringFormatter.NamedStringFormat(column.ValueFormat, item)))</td>
+			}</tr>}</tbody>
+	</table>
+</div>
+<div class="list-bottom">
+	<div class="page-box" id="bottomPageContainer"></div>		
+</div>
+<script type="text/javascript" src="http://static.shengjoy.dev/base/js/jquery.js"></script>
+<script type="text/javascript" src="http://static.shengjoy.dev/base/js/plugin/joy.validate.js"></script>
+<script type="text/javascript" src="http://static.shengjoy.dev/base/js/plugin/joy.pager.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$.joy.pager.show({
+			itemCount: parseInt("@ViewBag.ItemList.Count"),
+			startIndex: parseInt("@ViewBag.StartIndex"),
+			pageSize: parseInt('@ViewBag.PageSize'),
+			gotoPage: function (index) {
+				$("#startIndex").val(index);
+				$("#theForm").submit();
+			}
+		});
+	});
+</script>
+}

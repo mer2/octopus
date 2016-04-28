@@ -1,0 +1,36 @@
+﻿@if(this.ViewBag.QueryColumns != null && this.ViewBag.QueryColumns.Length > 0) {<div class="tool-box">
+	<form action="" method="post">
+	@foreach(var column in this.ViewBag.QueryColumns) {
+		<span><label for="@column.Name">@column.Title：</label>@RenderPage("Controllers/" + column.ControlType + ".cshtml", "")</span>
+	}
+		<input type="submit" value="搜索"/><a href="Add/@ViewBag.ItemName">添加</a>
+	</form>
+</div>}
+@if(this.ViewBag.ItemList != null) {<div class="content-box">
+	<table class="manage-list-table" cellpadding="0" cellspacing="0">
+		<thead>
+		@{
+			
+			foreach(var column in this.ViewBag.Columns) {
+				<th>@(column.Label)</th>
+			}
+		}
+		</thead>
+		<tbody>
+		@{
+			foreach(var dr in this.ViewBag.Data.Rows) {
+				<tr>
+				@{
+					foreach (var column in this.ViewBag.Columns) {
+						var dbValue = dr[column.Field];
+						var formatter = column.Formatter;
+						var value = string.IsNullOrEmpty(formatter) ? dbValue : string.Format(formatter, dbValue);
+						<td>@(Html.Raw(value.ToString()))</td>
+					}
+				}
+				</tr>
+			}		
+		}
+		</tbody>
+	</table>
+</div>}

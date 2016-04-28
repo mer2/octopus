@@ -1,0 +1,89 @@
+﻿@model Octopus.SecurityPermissions.Server.PermissionRole
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "编辑/添加权限角色：" + this.Model.Title;
+}
+<div class="manage-container">
+	<div class="tool-box"><b>@ViewBag.Title</b></div>
+	<div class="content-box">
+		<form id="theForm" method="post">
+		<table class="manage-form-table" cellpadding="0" cellspacing="0">			
+			<tr>
+                <th><em>*</em>所属应用：</th>
+                <td><div class="input"><input id="AppNo" name="AppNo" type="text" class="input-text" value="@Model.AppNo" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th><em>*</em>角色编号：</th>
+                <td><div class="input"><input id="RoleNo" name="RoleNo" type="text" class="input-text" value="@Model.RoleNo" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th><em>*</em>角色名称：</th>
+                <td><div class="input"><input id="Title" name="Title" type="text" class="input-text" value="@Model.Title" /><p></p></div></td>
+            </tr>
+			<tr>
+                <th>角色描述：</th>
+                <td><div class="input"><textarea id="Description" name="Description" class="l-textarea input-textarea">@Model.Description</textarea><p></p></div></td>
+            </tr>
+ 			<tr>
+                <th>是否有效：</th>
+                <td><div class="input">
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Enabled", true, Model.Enabled, new { @class = "inline-block", id="Enabled_True" })<span class="pad-l-5">是</span></label>
+					<label class="pad-r-10 inline-block">@Html.RadioButton("Enabled", false, !Model.Enabled, new { @class = "inline-block", id="Enabled_False" })<span class="pad-l-5">否</span></label>
+				<p></p></div></td>
+            </tr>
+		</table>
+		<div class="btn-div">
+			<input type="submit" value="提交" id="Button1" class="input-button" /> 
+			<input type="button" value="取消" class="input-button admin_closeTab" />
+		</div>
+		</form>
+	</div>
+</div>
+@section scripts {
+<script type="text/javascript">
+	$(function () {
+		var result = "@ViewBag.Result";
+		if (result) {
+			if (result.substr(0, 1) == "0") {
+				alert("操作成功！");
+				$.joyadmin.closeWindow();
+			} else {
+				alert(result);
+			}
+		}
+		$("#theForm").validate({
+			rules: {
+				AppNo: {
+					required: true
+				},
+				RoleNo: {
+					required: true
+				},
+				Title: {
+					required: true
+				}
+			},
+			messages: {
+				AppNo: {
+					required: "请输入所属应用"
+				},
+				RoleNo: {
+					required: "请输入权限角色编号"
+				},
+				Title: {
+					required: "请输入权限角色名称"
+				}
+			},
+			event: "blur",
+			errorElement: "span",
+			errorPlacement: function (error, element) {
+				element.next().html(error);
+			},
+			success: "valid",
+			submitHandler: function (form) {
+				form.submit();
+			}
+		});
+	});
+</script>
+}

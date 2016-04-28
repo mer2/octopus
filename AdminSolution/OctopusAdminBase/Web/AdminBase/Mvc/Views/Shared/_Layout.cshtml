@@ -1,0 +1,24 @@
+﻿@{
+	ViewBag.ResourceUrl = "http://static.sdg-china.com/gameplus";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<title>@ViewBag.Title</title>
+	<script language="javascript">
+	    if (window == top) {
+	        //window.location.href = '/admincp/index?url=@HttpUtility.UrlEncode(Request.Url.ToString())&title=@HttpUtility.UrlEncode(string.IsNullOrEmpty(ViewBag.Title)?"":ViewBag.Title)';
+	        window.location.href = '/admincp/index?url='+encodeURIComponent(window.location.href)+'&title=@HttpUtility.UrlEncode(string.IsNullOrEmpty(ViewBag.Title)?"":ViewBag.Title)';	        
+	    }
+	</script>
+    <link rel="stylesheet" rev="stylesheet" href="@ViewBag.ResourceUrl/common/easyui/themes/default/site.css" type="text/css" media="screen" />
+    <link rel="stylesheet" rev="stylesheet" href="@ViewBag.ResourceUrl/platform/admin/css/page.css" type="text/css" media="screen" />
+	<script src="@ViewBag.ResourceUrl/common/js/jQuery/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script src="@ViewBag.ResourceUrl/common/easyui/jquery.easyui.min.js" type="text/javascript"></script>    
+    @RenderSection("header", false)
+</head>
+<body>
+	@RenderBody()
+</body>
+</html>

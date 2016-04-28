@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DF4611A2-B65D-40BD-A041-445D916CFE33}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Joy.Admin.Extensions</RootNamespace>
+    <AssemblyName>Joy.Admin.Extensions</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HTB.DevFx, Version=2.0.2011.0, Culture=neutral, PublicKeyToken=91bf161e10ec3a85, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevFx.1.0.101965.0\lib\net35\HTB.DevFx.dll</HintPath>
+    </Reference>
+    <Reference Include="HTB.DevFx.BaseFx">
+      <HintPath>..\packages\DevFx.Lite.1.0.99103.0\lib\net20\HTB.DevFx.BaseFx.dll</HintPath>
+    </Reference>
+    <Reference Include="HTB.DevFx.Data">
+      <HintPath>..\packages\DevFx.Data.1.0.101493.0\lib\net35\HTB.DevFx.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.4.1\lib\net40-Client\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Octopus.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc6c025b12585c7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Octopus.Base.1.0.6725.0\lib\net35\Octopus.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Octopus.Esb">
+      <HintPath>..\packages\Octopus.Esb.1.0.5558.0\lib\net35\Octopus.Esb.dll</HintPath>
+    </Reference>
+    <Reference Include="Octopus.Runtime">
+      <HintPath>..\packages\Octopus.Runtime.1.0.5700.0\lib\net40\Octopus.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.0.8.1\lib\net40\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataManages\Config\Settings.cs">
+      <DependentUpon>Settings.config</DependentUpon>
+    </Compile>
+    <Compile Include="DataManages\Controllers\DataAdminController.cs" />
+    <Compile Include="DataManages\DataItem.cs" />
+    <Compile Include="DataManages\DataManageService.cs" />
+    <Compile Include="DataManages\DataPaginateResultHandler.cs" />
+    <Compile Include="DataManages\Data\Data\ManageData.cs" />
+    <Compile Include="DataManages\Data\Helper\ManageControl.cs" />
+    <Compile Include="DataManages\Data\Model\Enums.cs" />
+    <Compile Include="DataManages\Data\Model\ManageColumn.cs" />
+    <Compile Include="DataManages\Data\Model\Pager.cs" />
+    <Compile Include="DataManages\Data\Server\IManageData.cs" />
+    <Compile Include="DataManages\Data\Server\IManageServer.cs" />
+    <Compile Include="DataManages\Data\Server\ManageServer.cs" />
+    <Compile Include="DataManages\Enums.cs" />
+    <Compile Include="DataManages\IDataManageService.cs" />
+    <Compile Include="DataManages\ItemColumn.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DataManages\Config\Settings.config" />
+    <EmbeddedResource Include="DataManages\Views\Add.cshtml" />
+    <EmbeddedResource Include="DataManages\Views\Edit.cshtml" />
+    <EmbeddedResource Include="DataManages\Views\List.cshtml">
+      <Generator>MvcRazorClassGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataManages\Views\Controllers\Text.cshtml" />
+    <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.Template.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>@copy /y "$(ProjectDir)Properties\AssemblyInfo.Template.cs" "$(ProjectDir)Properties\AssemblyInfo.cs"
+SubWCRev.exe $(ProjectDir) "$(ProjectDir)Properties\AssemblyInfo.Template.cs" "$(ProjectDir)Properties\AssemblyInfo.cs" -f
+IF %25ERRORLEVEL%25 NEQ 0 EXIT /B 0</PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,33 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using System.Data
+@using DataManages.Data.Helper
+@{
+    ViewBag.Title = "Edit";
+}
+
+<form method="POST">
+<table>
+	@{
+		ManageControl control = new ManageControl();
+		DataRow row = this.ViewBag.Data.Rows.Count > 0 ? this.ViewBag.Data.Rows[0] : null;
+		foreach(var column in this.ViewBag.EditColumns) {
+			var value = row != null ? row[column.Field].ToString() : string.Empty;
+			if (!column.IsPrimaryKey) {
+				<tr>
+					<th>@(column.Label):</th>
+					<td>@(Html.Raw(control.GetControl(column.ControlType, column.RelationName, column.RelationFields, column.Field, value)))</td>
+				</tr>
+			} else {
+				<tr>
+					<th></th>
+					<td><input type="hidden" name="@(column.Field)" value="@(value)"/></td>
+				</tr>
+			}
+		}}
+	
+	<tr>
+		<th></th>
+		<td><input type="submit" value="保存" /></td>
+	</tr>
+</table>
+</form>

@@ -1,0 +1,37 @@
+﻿@using Octopus.Web.Mvc;
+@{
+	Layout = "~/Views/Shared/IndexLayout.cshtml";
+	ViewBag.Title = "盛久后台管理系统";
+}
+@section header {
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/joyyang/css/common/reset.css" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/libs/ligerui/skins/Aqua/css/ligerui-all.css" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/joyyang/css/admin/style.css" />
+	<style type="text/css">
+		.l-tree a:hover {text-decoration: underline;color: #ff0000; }
+	</style>
+	<script type="text/javascript" src="@Page.ResourceUrl/base/js/??jquery-1.10.2.js,jquery-migrate-1.2.1.min.js,md5.js,json2.js"></script>
+	@this.RenderExistPage("~/Views/AdminShared/PageHeader.Local.cshtml")
+	<meta name="seajsmeta" lang="data-main" content="staticHuyu/admin/huyu-www-index" />
+	<meta name="huyu" lang="staticHuyu/admin/huyu-www-index" content='{permissions:@Html.Raw(ViewBag.Permissions),url:"@(string.IsNullOrEmpty((string) ViewBag.DefaultUrl) ? null : Url.Content(ViewBag.DefaultUrl))",title:"@ViewBag.DefaultTitle"}' />
+}
+<div id="pageloading"></div>
+<div id="topmenu" class="l-topmenu">
+	<div class="l-topmenu-logo">@ViewBag.Title</div>
+	<div class="l-topmenu-welcome"><span class="space">欢迎您：@ViewBag.DisplayName <a href="@Url.Action("Logout", "Passport")" target="_top">[退出]</a></span></div>
+</div>
+<div id="joyManageLayout" style="width: 99.2%; margin: 0 auto; margin-top: 4px;">
+	<div position="left" title="@ViewBag.Title" id="joyAccordion"></div>
+	<div position="center" id="framecenter">
+		<div tabid="home" title="首页" style="height: 300px">
+			<iframe frameborder="0" name="home" id="home" src="@Url.Action("Welcome")"></iframe>
+		</div>
+	</div>
+</div>
+<div style="height: 32px; line-height: 32px; text-align: center;">
+	Copyright © 2012-2014 Shengjoy Networking
+</div>
+@section scripts {
+<script type="text/javascript" src="@Page.ResourceUrl/libs/ligerui/js/ligerui.all.js"></script>
+<script type="text/javascript" src="@Page.ResourceUrl/libs/seajs-2.1.1/??sea-debug.js,config.js,plugin-params.js" data-main="staticHuyu/huyu-main" id="seajsnode"></script>
+}

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>Octopus.AdminBase</id>
+		<version>$version$</version>
+		<title>Octopus AdminBase</title>
+		<authors>R2</authors>
+		<description>Octopus AdminBase</description>
+		<projectUrl>https://github.com/mer2/octopus</projectUrl>
+	</metadata>
+</package>

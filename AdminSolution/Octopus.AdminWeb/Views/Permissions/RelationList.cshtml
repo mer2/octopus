@@ -1,0 +1,92 @@
+﻿@model HTB.DevFx.Data.Entities.IPaginateResult<Octopus.SecurityPermissions.Server.PermissionRelation>
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "授权列表";
+}
+<div class="manage-container">
+	<div class="tool-box">
+		<form id="theForm" method="get">
+			<label for="TargetObject">授权类型：</label><select id="TargetObject" name="TargetObject" class="input-text" style="width:50px"><option></option><option value="1">用户</option><option value="2">角色</option></select>&nbsp;<input class="input-text" style="width:150px" type="text" name="TargetValue" id="TargetValue" value="@ViewBag.TargetValue" />
+			<label for="PermissionTitle">资源名称：</label><input class="input-text" style="width:150px" type="text" name="PermissionTitle" id="PermissionTitle" value="@ViewBag.PermissionTitle" />
+			<label for="PermissionNo">权限编号：</label><input class="input-text" style="width:150px" type="text" name="PermissionNo" id="PermissionNo" value="@ViewBag.PermissionNo" />
+			<label for="PermissionValue">附加值：</label><input class="input-text" style="width:150px" type="text" name="PermissionValue" id="PermissionValue" value="@ViewBag.PermissionValue" />
+			<input class="input-button" type="submit" value="搜索" />
+			<input type="hidden" name="startIndex" id="startIndex" value="0" />
+		</form>
+	</div>
+	<div class="list-bottom">
+		<div class="batch"><input class="input-button admin_openTab" type="button" value="添加授权关系" href="/Permissions/RelationCreate" title="添加授权关系" /></div>
+		<div class="page-box" id="topPageContainer"></div>		
+	</div>	
+	<div class="content-box">
+		<table class="manage-list-table" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>授权类型</th>
+					<th>授权对象</th>
+					<th>所属应用</th>
+					<th>权限资源</th>
+					<th>权限附加值</th>
+					<th>备注</th>
+					<th>优先级</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach(var item in this.Model.Items) {
+				<tr>
+					<td style="text-align:left">@item.ID</td>
+					<td style="text-align:left"><a href="/Permissions/RelationList?TargetObject=@item.TargetObject">@(item.TargetObject == 1 ? "用户" : "角色")</a></td>
+					<td style="text-align:left"><a href="/Permissions/RelationList?TargetValue=@item.TargetValue">@item.TargetValue</a></td>
+					<td style="text-align:left">@item.AppNo</td>
+					<td style="text-align:left"><a href="/Permissions/RelationList?PermissionNo=@item.PermissionNo">@(item.PermissionResource != null ? item.PermissionResource.Title : "") （@item.PermissionNo）</a></td>
+					<td style="text-align:left"><a href="/Permissions/RelationList?PermissionValue=@item.PermissionValue">@item.PermissionValue</a></td>
+					<td style="text-align:left">@item.Remark</td>
+					<td style="text-align:left">@item.Priority</td>
+					<td>
+						<a href="/Permissions/RelationEdit/@item.ID" title="编辑授权" class="admin_openTab">编辑</a> |
+						<a href="/Permissions/RelationDelete/@item.ID" title="删除授权" class="permissions_delete">删除</a>
+					</td>
+				</tr>
+			}
+			</tbody>
+		</table>
+	</div>
+	<div class="list-bottom">
+		<div class="batch"><input class="input-button admin_openTab" type="button" value="添加授权关系" href="/Permissions/RelationCreate" title="添加授权关系" /></div>
+		<div class="page-box" id="bottomPageContainer"></div>		
+	</div>	
+</div>
+@section scripts {
+<script type="text/javascript">
+	$(function () {
+		$("#TargetObject").val("@ViewBag.TargetObject");
+
+		$(".permissions_delete").click(function () {
+			if (confirm("确实要删除吗？")) {
+				var $this = $(this);
+				$.post($this.attr("href"), function (data) {
+					if (data.ResultNo != 0) {
+						alert(data.ResultDescription);
+					} else {
+						window.location.href = window.location.href;
+					}
+				}).error(function () {
+					alert("请求失败！");
+				});
+			}
+			return false;
+		});
+		$.joy.pager.show({
+			itemCount: parseInt("@Model.Count"),
+			startIndex: parseInt("@ViewBag.StartIndex"),
+			pageSize: parseInt('@ViewBag.PageSize'),
+			gotoPage: function (index) {
+				$("#startIndex").val(index);
+				$("#theForm").submit();
+			}
+		});
+	});
+</script>
+}

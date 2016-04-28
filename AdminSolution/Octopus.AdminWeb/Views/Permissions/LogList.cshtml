@@ -1,0 +1,82 @@
+﻿@model HTB.DevFx.Data.Entities.IPaginateResult<Octopus.SecurityPermissions.Server.PermissionLog>
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "授权日志";
+}
+<div class="manage-container">
+	<div class="tool-box">
+		<form id="theForm" method="get">
+			<label for="userName">操作人：</label><input class="input-text" type="text" name="userName" id="userName" value="@ViewBag.UserName" />
+			<label for="startTime">操作时间：</label><input class="input-text" type="text" name="startTime" id="startTime" value="@ViewBag.StartTime" /> - <input class="input-text" type="text" name="endTime" id="endTime" value="@ViewBag.EndTime" />
+			<input class="input-button" type="submit" value="搜索" />
+			<input type="hidden" name="startIndex" id="startIndex" value="0" />
+		</form>
+	</div>
+	<div class="list-bottom">
+		<div class="page-box" id="topPageContainer"></div>		
+	</div>	
+	<div class="content-box">
+		<table class="manage-list-table" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>操作人</th>
+					<th>操作时间</th>
+					<th>操作IP</th>
+					<th>操作内容</th>
+					<th>操作对象</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach(var item in this.Model.Items) {
+				<tr>
+					<td style="text-align:left;width:40px" nowrap="nowrap">@item.ID</td>
+					<td style="text-align:left;width:60px" nowrap="nowrap">@item.UserName</td>
+					<td style="width: 150px" nowrap="nowrap">@item.CreatedTime</td>
+					<td style="width: 100px" nowrap="nowrap">@item.ClientIP</td>
+					<td style="text-align:left">@item.Contents</td>
+					<td style="text-align:center;width:50px"><a href="javascript:void(0)" title="@item.TargetObject">查看</a></td>
+				</tr>
+			}
+			</tbody>
+		</table>
+	</div>
+	<div class="list-bottom">
+		<div class="page-box" id="bottomPageContainer"></div>		
+	</div>	
+</div>
+@section scripts {
+<script type="text/javascript">
+	$(function () {
+		$("#startTime").datepicker({
+			defaultDate: "+1w",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			numberOfMonths: 1,
+			onSelect: function (selectedDate) {
+				$("#endTime").datepicker("option", "minDate", selectedDate);
+			}
+		});
+		$("#startTime").datepicker($.datepicker.regional["zh-CN"]);
+		$("#endTime").datepicker({
+			defaultDate: "+1w",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			numberOfMonths: 1,
+			onSelect: function (selectedDate) {
+				$("#startTime").datepicker("option", "maxDate", selectedDate);
+			}
+		});
+		$("#endTime").datepicker($.datepicker.regional["zh-CN"]);
+		$.joy.pager.show({
+			itemCount: parseInt("@Model.Count"),
+			startIndex: parseInt("@ViewBag.StartIndex"),
+			pageSize: parseInt('@ViewBag.PageSize'),
+			gotoPage: function (index) {
+				$("#startIndex").val(index);
+				$("#theForm").submit();
+			}
+		});
+	});
+</script>
+}

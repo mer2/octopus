@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section header {
+	<link href="@Page.ResourceUrl/admin/ligerui/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
+	@RenderSection("header", false)
+}
+@RenderBody()
+@section scripts {
+	<script src="@Page.ResourceUrl/base/js/jquery.js" type="text/javascript"></script>
+	<script src="@Page.ResourceUrl/admin/ligerui/js/ligerui.min.js" type="text/javascript"></script>
+	@RenderSection("scripts", false)
+}

@@ -1,0 +1,14 @@
+﻿@helper InitSettings(string settingPage) {
+	if(!string.IsNullOrEmpty(settingPage) && File.Exists(this.Request.MapPath(settingPage))) {
+		var data = new System.Collections.Hashtable();
+		RenderPage(settingPage, data).ToHtmlString();
+		foreach (var key in data.Keys) {
+			PageData[key] = data[key];
+		}
+	}
+}
+@{
+	Layout = "~/Views/AdminShared/_Layout.cshtml";
+	@InitSettings("~/Views/AdminShared/Settings/PageSetting.cshtml");//初始化公共文件
+	@InitSettings(System.Configuration.ConfigurationManager.AppSettings["Joy:PageSettings"]);//初始化个性化文件
+}

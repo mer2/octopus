@@ -1,0 +1,29 @@
+﻿@{
+    //Layout = null;
+    ViewBag.Title = "首页";    
+}
+@this.User.Identity.Name
+<div class="easyui-tabs" id="all">
+    <div title="全部APP" selected="true">
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <input type="checkbox" class="tc" checked="checked" /> 选项<br />
+        <br /><br /><input type="checkbox" class="ta" /> 全选
+    </div>
+    <div title="上架情况" selected="false">asdfsdf</div>
+</div>
+<script language="javascript">
+    $(document).ready(function () {
+        //$(".tc").attr("checked", true);
+
+        $(".ta").click(function () {
+            $(".tc").attr("checked", this.checked);
+        });
+    });
+</script>

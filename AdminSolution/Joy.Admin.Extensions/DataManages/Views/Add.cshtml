@@ -1,0 +1,23 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using DataManages.Data.Helper
+@{
+	ViewBag.Title = "Add";
+}
+<form method="POST">
+<table>
+	@{
+		ManageControl control = new ManageControl();
+		foreach(var column in this.ViewBag.Columns) {
+		<tr>
+			<th>@(column.Label):
+			</th>
+			<td>@(Html.Raw(control.GetControl(column.ControlType, column.RelationName, column.RelationFields, column.Field, string.Empty)))</td>
+		</tr>	
+		}
+		<tr>
+			<th></th>
+			<td><input type="submit" value="保存"/></td>
+		</tr>
+	}
+</table>
+</form>

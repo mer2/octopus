@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{A16A5C4A-B987-4DFB-8A36-9B1479AAC19C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{37B780C2-CD18-40DF-B086-D9230A382DB4}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\nuget.exe = .nuget\nuget.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Permissions", "Permissions", "{81B08FCB-C82A-49A7-A3E0-37DBD80CBE5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OctopusAdminBase", "OctopusAdminBase\OctopusAdminBase.csproj", "{05DD9C47-83DB-480A-9FD2-A7587528DDC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication1", "Testing\MvcApplication1\MvcApplication1.csproj", "{70162802-0827-463A-9EE1-80B2A522D8AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.AdminWeb", "Octopus.AdminWeb\Octopus.AdminWeb.csproj", "{548A5B47-9B34-4948-A741-49D988C86700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.AdminServer", "Octopus.AdminServer\Octopus.AdminServer.csproj", "{9B74C47F-1086-44D1-BD50-D2CDE7071369}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joy.Admin.LoginWeb", "Joy.Admin.LoginWeb\Joy.Admin.LoginWeb.csproj", "{B829D17E-D091-490F-AD51-E42AC71A754B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.SecurityPermissions", "..\PermissionSolution\Octopus.SecurityPermissions\Octopus.SecurityPermissions.csproj", "{9537B12A-288D-4A10-8AAA-7B432C7928D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.SecurityPermissions.Server", "..\PermissionSolution\Octopus.SecurityPermissions.Server\Octopus.SecurityPermissions.Server.csproj", "{090BE71C-F68F-4CB2-B46E-094A2CBA9D68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.SecurityPermissions.Data", "..\PermissionSolution\Octopus.SecurityPermissions.Data\Octopus.SecurityPermissions.Data.csproj", "{70FE7348-0650-4B00-908A-758454234186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.SecurityPermissions.Web", "..\PermissionSolution\Octopus.SecurityPermissions.Web\Octopus.SecurityPermissions.Web.csproj", "{D28AF446-F755-4A27-B2EC-3D5D1BC4E392}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joy.Admin.Extensions", "Joy.Admin.Extensions\Joy.Admin.Extensions.csproj", "{DF4611A2-B65D-40BD-A041-445D916CFE33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05DD9C47-83DB-480A-9FD2-A7587528DDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DD9C47-83DB-480A-9FD2-A7587528DDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DD9C47-83DB-480A-9FD2-A7587528DDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DD9C47-83DB-480A-9FD2-A7587528DDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70162802-0827-463A-9EE1-80B2A522D8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70162802-0827-463A-9EE1-80B2A522D8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70162802-0827-463A-9EE1-80B2A522D8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70162802-0827-463A-9EE1-80B2A522D8AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{548A5B47-9B34-4948-A741-49D988C86700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{548A5B47-9B34-4948-A741-49D988C86700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{548A5B47-9B34-4948-A741-49D988C86700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{548A5B47-9B34-4948-A741-49D988C86700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B74C47F-1086-44D1-BD50-D2CDE7071369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B74C47F-1086-44D1-BD50-D2CDE7071369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B74C47F-1086-44D1-BD50-D2CDE7071369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B74C47F-1086-44D1-BD50-D2CDE7071369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B829D17E-D091-490F-AD51-E42AC71A754B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B829D17E-D091-490F-AD51-E42AC71A754B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B829D17E-D091-490F-AD51-E42AC71A754B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B829D17E-D091-490F-AD51-E42AC71A754B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9537B12A-288D-4A10-8AAA-7B432C7928D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9537B12A-288D-4A10-8AAA-7B432C7928D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9537B12A-288D-4A10-8AAA-7B432C7928D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9537B12A-288D-4A10-8AAA-7B432C7928D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{090BE71C-F68F-4CB2-B46E-094A2CBA9D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090BE71C-F68F-4CB2-B46E-094A2CBA9D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090BE71C-F68F-4CB2-B46E-094A2CBA9D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090BE71C-F68F-4CB2-B46E-094A2CBA9D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70FE7348-0650-4B00-908A-758454234186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70FE7348-0650-4B00-908A-758454234186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70FE7348-0650-4B00-908A-758454234186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70FE7348-0650-4B00-908A-758454234186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28AF446-F755-4A27-B2EC-3D5D1BC4E392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28AF446-F755-4A27-B2EC-3D5D1BC4E392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28AF446-F755-4A27-B2EC-3D5D1BC4E392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28AF446-F755-4A27-B2EC-3D5D1BC4E392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF4611A2-B65D-40BD-A041-445D916CFE33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF4611A2-B65D-40BD-A041-445D916CFE33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF4611A2-B65D-40BD-A041-445D916CFE33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF4611A2-B65D-40BD-A041-445D916CFE33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70162802-0827-463A-9EE1-80B2A522D8AB} = {A16A5C4A-B987-4DFB-8A36-9B1479AAC19C}
+		{9537B12A-288D-4A10-8AAA-7B432C7928D7} = {81B08FCB-C82A-49A7-A3E0-37DBD80CBE5C}
+		{090BE71C-F68F-4CB2-B46E-094A2CBA9D68} = {81B08FCB-C82A-49A7-A3E0-37DBD80CBE5C}
+		{70FE7348-0650-4B00-908A-758454234186} = {81B08FCB-C82A-49A7-A3E0-37DBD80CBE5C}
+		{D28AF446-F755-4A27-B2EC-3D5D1BC4E392} = {81B08FCB-C82A-49A7-A3E0-37DBD80CBE5C}
+	EndGlobalSection
+EndGlobal

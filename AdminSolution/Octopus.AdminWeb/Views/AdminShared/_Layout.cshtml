@@ -1,0 +1,24 @@
+﻿@using System.Configuration
+@using Octopus.Web.Mvc
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+	<meta name="Description" content="" />
+	<meta name="Keywords" content="" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/joyyang/css/common/reset.css" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/joyyang/css/admin/style.css" />
+	<link rel="stylesheet" type="text/css" href="@Page.ResourceUrl/libs/ligerui/skins/Aqua/css/ligerui-all.css" />
+	<script type="text/javascript" src="@Page.ResourceUrl/base/js/??jquery-1.10.2.js,jquery-migrate-1.2.1.min.js,md5.js,json2.js,jstorage.js,plugin/jquery-ui-1.10.3.min.js,plugin/jquery.ui.datepicker-zh-CN.js,plugin/jquery.validate-1.11.1.js,plugin/jquery.validate.extensions.js,plugin/jquery.cookie.js,plugin/huyu.layer.js,plugin/joy.pager.js"></script>
+	@this.RenderExistPage(ConfigurationManager.AppSettings["Admin:PageHeaders"])
+	@RenderSection("header", false)
+	<meta name="seajsmeta" lang="data-main" content="staticHuyu/admin/huyu-shared-layout" />
+</head>
+<body>
+    @RenderBody()
+	<script type="text/javascript" src="@Page.ResourceUrl/??libs/ligerui/js/ligerui.all.js,joyyang/js/admin/grid.js"></script>
+	<script type="text/javascript" src="@Page.ResourceUrl/libs/seajs-2.1.1/??sea-debug.js,config.js,plugin-params.js" data-main="staticHuyu/huyu-main" id="seajsnode"></script>
+	@RenderSection("scripts", false)
+</body>
+</html>
