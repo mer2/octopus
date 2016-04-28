@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>Octopus.Runtime</id>
+		<version>$version$</version>
+		<title>Octopus Runtime</title>
+		<authors>R2</authors>
+		<description>Octopus Runtime</description>
+	</metadata>
+</package>

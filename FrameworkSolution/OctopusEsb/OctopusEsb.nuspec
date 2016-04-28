@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>Octopus.Esb</id>
+		<version>$version$</version>
+		<title>Octopus Esb</title>
+		<authors>R2</authors>
+		<description>Octopus Esb</description>
+	</metadata>
+</package>

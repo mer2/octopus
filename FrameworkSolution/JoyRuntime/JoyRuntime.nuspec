@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>Joy.Runtime</id>
+		<version>$version$</version>
+		<title>Joy Runtime</title>
+		<authors>R2</authors>
+		<description>Joy Runtime</description>
+	</metadata>
+</package>

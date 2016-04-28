@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>BeITMemcached</id>
+		<version>$version$</version>
+		<title>BeITMemcached, Memcached Client</title>
+		<authors>BeITMemcached</authors>
+		<description>BeITMemcached, Memcached Client</description>
+		<projectUrl>http://code.google.com/p/beitmemcached/</projectUrl>
+	</metadata>
+</package>
