@@ -6,5 +6,6 @@
 		<title>Joy Runtime</title>
 		<authors>R2</authors>
 		<description>Joy Runtime</description>
+		<projectUrl>https://github.com/mer2/octopus</projectUrl>
 	</metadata>
 </package>

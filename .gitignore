@@ -7,3 +7,4 @@ AssemblyInfo.cs
 *.testsettings
 Logs/
 /FrameworkSolution/Testing/MvcApplication1
+*.csproj.user

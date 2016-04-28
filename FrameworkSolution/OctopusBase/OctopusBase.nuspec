@@ -6,5 +6,6 @@
 		<title>Octopus Base</title>
 		<authors>R2</authors>
 		<description>Octopus Base</description>
+		<projectUrl>https://github.com/mer2/octopus</projectUrl>
 	</metadata>
 </package>

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
 	<metadata>
-		<id>Octopus.Runtime</id>
+		<id>Octopus.SecurityPermissions</id>
 		<version>$version$</version>
-		<title>Octopus Runtime</title>
+		<title>Octopus SecurityPermissions</title>
 		<authors>R2</authors>
-		<description>Octopus Runtime</description>
+		<description>Octopus SecurityPermissions</description>
 		<projectUrl>https://github.com/mer2/octopus</projectUrl>
 	</metadata>
 </package>
