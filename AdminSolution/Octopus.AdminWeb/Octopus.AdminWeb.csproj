@@ -87,7 +87,7 @@
       <HintPath>..\packages\RazorEngine.3.3.0.1\lib\net40\RazorEngine.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
@@ -140,6 +140,7 @@
     <Content Include="Views\AdminShared\HuyuLayout.cshtml" />
     <None Include="Views\AdminShared\PageHeader.Local.cshtml" />
     <Content Include="Views\Shared\IndexLayout.cshtml" />
+    <Content Include="Views\Home\UpdatePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -174,6 +175,10 @@
     <ProjectReference Include="..\..\PermissionSolution\Octopus.SecurityPermissions\Octopus.SecurityPermissions.csproj">
       <Project>{9537B12A-288D-4A10-8AAA-7B432C7928D7}</Project>
       <Name>Octopus.SecurityPermissions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Octopus.AdminServer\Octopus.AdminServer.csproj">
+      <Project>{9b74c47f-1086-44d1-bd50-d2cde7071369}</Project>
+      <Name>Octopus.AdminServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\OctopusAdminBase\OctopusAdminBase.csproj">
       <Project>{05DD9C47-83DB-480A-9FD2-A7587528DDC3}</Project>

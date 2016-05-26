@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Security.Principal;
 using System.Web;
-using CrowdClient;
 using HTB.DevFx.Cache;
 using HTB.DevFx.Core;
 using Joy.Security;
+using Octopus.Admin.Crowd;
 using Octopus.Admin.Server.Config;
 using Octopus.Web.AdminBase;
 
@@ -42,12 +42,12 @@ namespace Octopus.Admin.Server
 			}
 			//去Crowd认证
 			var svr = CrowdService.Current;
-			var result = svr.Login(userName, password);
+			var result = svr.Authenticate(userName, password);
 			if(result.ResultNo != 0) {
 				return result;
 			}
 			var principal = result.ResultAttachObjectEx;
-			var user = principal.User;
+			var user = principal;
 			var userResult = svr.GetUser(userName);
 			if (userResult.IsSuccess() && userResult.ResultAttachObjectEx != null) {
 				user = userResult.ResultAttachObjectEx;

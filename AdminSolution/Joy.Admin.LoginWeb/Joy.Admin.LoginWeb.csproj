@@ -50,9 +50,6 @@
     <Reference Include="BeITMemcached">
       <HintPath>..\packages\BeITMemcached.1.2.61.0\lib\net20\BeITMemcached.dll</HintPath>
     </Reference>
-    <Reference Include="CrowdClient">
-      <HintPath>.\CrowdClient.dll</HintPath>
-    </Reference>
     <Reference Include="HTB.DevFx, Version=2.0.2011.0, Culture=neutral, PublicKeyToken=91bf161e10ec3a85, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DevFx.1.0.103738.0\lib\net35\HTB.DevFx.dll</HintPath>
