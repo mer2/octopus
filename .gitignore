@@ -7,3 +7,5 @@ packages/
 Logs/
 /FrameworkSolution/Testing/MvcApplication1
 *.csproj.user
+
+/AdminSolution/documents/AdminDataModel.pdb
