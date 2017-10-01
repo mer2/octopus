@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>Octopus</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Esb\DefaultJsonSerializer.cs" />
+    <Compile Remove="Esb\EsbResult.cs" />
+    <Compile Remove="Esb\JsonSerializerFactory.cs" />
+    <Compile Remove="Esb\Server\RequestContext.cs" />
+    <Compile Remove="Esb\Server\RouteDataValueProviderFactory.cs" />
+    <Compile Remove="Esb\Server\ServiceControllerBase.cs" />
+    <Compile Remove="Esb\Server\ServiceControllerFactory.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Esb\Config\Settings.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Esb\Config\Settings.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HTB.DevFx" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

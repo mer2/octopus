@@ -9,3 +9,4 @@ Logs/
 *.csproj.user
 
 /AdminSolution/documents/AdminDataModel.pdb
+.vs
