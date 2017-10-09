@@ -26,13 +26,6 @@ namespace ConsoleApp1
 			}
 			app.UseEsb();
 
-			/*app.UseWhen(context => {
-				var matched = context.Request.Path.Value.StartsWith("/Services/", StringComparison.OrdinalIgnoreCase);
-				return matched;
-			}, appBuilder => {
-				//var factory = ObjectService.GetObject<IServiceFactory>();
-				//appBuilder.Use((ctx, next) => factory.InvokeAsync(ctx, null));
-			});*/
 			// app.UseMvc();
 		}
 	}

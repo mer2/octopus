@@ -10,10 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary2\ClassLibrary2.csproj" />
     <ProjectReference Include="..\Octopus.Esb\Octopus.Esb.csproj" />
   </ItemGroup>
 
