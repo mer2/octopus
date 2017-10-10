@@ -12,7 +12,7 @@ using RemotingException = HTB.DevFx.Remoting.RemotingException;
 
 namespace Octopus.Esb.Client
 {
-	public class HttpRealProxy : DispatchProxy, IHttpRealProxy
+	public class HttpRealProxy : IHttpRealProxy
 	{
 		public HttpRealProxy(Type proxyType, string url, string contentType) {
 			this.ProxyType = proxyType;
@@ -30,7 +30,7 @@ namespace Octopus.Esb.Client
 			set => this.contentType = value;
 		}
 
-		protected override object Invoke(MethodInfo targetMethod, object[] args) {
+		protected virtual object Invoke(MethodInfo targetMethod, object[] args) {
 			object returnValue = null;
 			if(targetMethod.DeclaringType == typeof(object)) {
 				switch(targetMethod.Name) {
@@ -205,9 +205,13 @@ namespace Octopus.Esb.Client
 			if (this.proxyInstance == null) {
 				lock (this) {
 					if (this.proxyInstance == null) {
-						var creatorType = typeof(DispatchProxy).GetMethod("Create", BindingFlags.Static);
-						var method = creatorType.MakeGenericMethod(this.ProxyType, this.GetType());
-						this.proxyInstance = method.Invoke(null, new object[] { this.ProxyType, this });
+						var creatorType = typeof(DispatchProxy).GetMethod("Create");
+						var method = creatorType.MakeGenericMethod(this.ProxyType, typeof(HttpDispatchProxy));
+						var instance = method.Invoke(null, null) as HttpDispatchProxy;
+						if (instance != null) {
+							instance.SetHttpRealProxy(this);
+						}
+						this.proxyInstance = instance;
 					}
 				}
 			}
@@ -222,5 +226,17 @@ namespace Octopus.Esb.Client
 
 		public virtual Type ProxyType { get; }
 		public virtual string ProxyUrl { get; }
+
+		public class HttpDispatchProxy : DispatchProxy
+		{
+			private HttpRealProxy realProxy;
+			internal void SetHttpRealProxy(HttpRealProxy realProxy) {
+				this.realProxy = realProxy;
+			}
+
+			protected override object Invoke(MethodInfo targetMethod, object[] args) {
+				return this.realProxy.Invoke(targetMethod, args);
+			}
+		}
 	}
 }

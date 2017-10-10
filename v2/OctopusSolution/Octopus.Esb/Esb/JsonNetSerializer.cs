@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
-using HTB.DevFx.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
@@ -12,10 +11,7 @@ namespace Octopus.Esb
 	{
 		private JsonSerializer serializer;
 		protected internal virtual JsonSerializer GetSerializer(IDictionary options = null) {
-			if(this.serializer == null) {
-				this.serializer = JsonSerializer.Create(this.GetJsonSerializerSettings(options));
-			}
-			return this.serializer;
+			return this.serializer ?? (this.serializer = JsonSerializer.Create(this.GetJsonSerializerSettings(options)));
 		}
 
 		protected virtual JsonSerializerSettings GetJsonSerializerSettings(IDictionary options = null) {
@@ -36,13 +32,9 @@ namespace Octopus.Esb
 		}
 
 		protected override object ConvertInternal(object instance, Type expectedType, IDictionary options) {
-			var token = instance as JToken;
-			if(token != null) {
-				var method = typeof(JToken).GetMethod("ToObject", new Type[] { }).MakeGenericMethod(expectedType);
-				object result;
-				if(TypeHelper.TryInvoke(token, method, out result, false)) {
-					return result;
-				}
+			if(instance is JToken token) {
+				var result = token.ToObject(expectedType, this.serializer);
+				return result;
 			}
 			return Convert.ChangeType(instance, expectedType);
 		}

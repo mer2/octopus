@@ -8,6 +8,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+	        try {
+				throw new NotImplementedException();
+	        } catch { }
 			BuildWebHost(args).Run();
 			Console.WriteLine("Hello World!");
 			Console.ReadLine();
