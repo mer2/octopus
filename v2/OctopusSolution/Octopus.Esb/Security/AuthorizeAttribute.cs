@@ -1,5 +1,4 @@
 ﻿using System;
-using Octopus.Esb;
 using Octopus.Esb.Server;
 
 namespace Octopus.Security

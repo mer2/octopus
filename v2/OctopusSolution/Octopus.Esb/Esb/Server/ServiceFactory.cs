@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HTB.DevFx;
 using HTB.DevFx.Core;
+using HTB.DevFx.Esb;
 using HTB.DevFx.Exceptions;
 using HTB.DevFx.Log;
 using Octopus.Esb.Config;

@@ -4,8 +4,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using HTB.DevFx.Cryptography;
+using HTB.DevFx.Esb;
 using HTB.DevFx.Exceptions;
-using Octopus.Esb;
 
 namespace Octopus.Cryptography
 {

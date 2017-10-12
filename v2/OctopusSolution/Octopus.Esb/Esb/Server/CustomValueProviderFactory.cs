@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HTB.DevFx.Esb;
 using Microsoft.AspNetCore.Http;
 
 namespace Octopus.Esb.Server

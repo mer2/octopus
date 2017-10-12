@@ -58,36 +58,6 @@ namespace Octopus.Esb.Config
 		public bool Enabled { get; private set; }
 	}
 
-	internal class SerializerFactorySetting : ConfigSettingElement
-	{
-		protected override void OnConfigSettingChanged() {
-			base.OnConfigSettingChanged();
-			this.DefaultSerializerName = this.GetRequiredSetting("defaultSerializer");
-			this.Debug = this.GetSetting("debug", false);
-			this.SerializerItems = this.GetSettings<SerializerItemSetting>(null).ToArray();
-		}
-
-		public string DefaultSerializerName { get; private set; }
-		public bool Debug { get; private set; }
-		public SerializerItemSetting[] SerializerItems { get; private set; }
-	}
-
-	internal class SerializerItemSetting : ConfigSettingElement
-	{
-		protected override void OnConfigSettingChanged() {
-			base.OnConfigSettingChanged();
-			this.Name = this.GetRequiredSetting("name");
-			this.ContentType = this.GetRequiredSetting("contentType");
-			this.TypeName = this.GetRequiredSetting("type");
-			this.Enabled = this.GetSetting("enabled", true);
-		}
-
-		public string Name { get; private set; }
-		public string ContentType { get; private set; }
-		public string TypeName { get; private set; }
-		public bool Enabled { get; private set; }
-	}
-
 	internal class AuthorizationProviderFactorySetting : ConfigSettingElement
 	{
 		protected override void OnConfigSettingChanged() {
@@ -110,62 +80,5 @@ namespace Octopus.Esb.Config
 
 		public string Category { get; private set; }
 		public string ProviderTypeName { get; private set; }
-	}
-
-	internal class HttpRealProxyFactorySetting : ConfigSettingElement
-	{
-		protected override void OnConfigSettingChanged() {
-			base.OnConfigSettingChanged();
-			this.Extenders = this.GetSettings<HttpRealProxyFactoryExtenderSetting>("extenders", null).ToArray();
-			this.Handlers = this.GetSettings<HttpRealProxyHandlerSetting>("handlers", null).ToArray();
-		}
-
-		public HttpRealProxyFactoryExtenderSetting[] Extenders { get; private set; }
-		public HttpRealProxyHandlerSetting[] Handlers { get; private set; }
-	}
-
-	internal class HttpRealProxyFactoryExtenderSetting : ConfigSettingElement
-	{
-		protected override void OnConfigSettingChanged() {
-			base.OnConfigSettingChanged();
-			this.TypeName = this.GetSetting("type");
-			this.Enabled = this.GetSetting("enabled", true);
-		}
-
-		public string TypeName { get; private set; }
-		public bool Enabled { get; private set; }
-	}
-
-	internal class HttpRealProxyHandlerSetting : ConfigSettingElement
-	{
-		protected override void OnConfigSettingChanged() {
-			base.OnConfigSettingChanged();
-			this.Name = this.GetRequiredSetting("name");
-			this.TypeName = this.GetSetting("type");
-		}
-
-		public string Name { get; private set; }
-		public string TypeName { get; private set; }
-	}
-
-	internal class ProxyReturnTypeHandlerSetting : ConfigSettingElement
-	{
-		protected override void OnConfigSettingChanged() {
-			base.OnConfigSettingChanged();
-			this.ReturnTypes = this.GetSettings<ExpectedReturnTypeSetting>("returnTypes", null).ToArray();
-		}
-		public ExpectedReturnTypeSetting[] ReturnTypes { get; private set; }//期待的返回值
-	}
-
-	internal class ExpectedReturnTypeSetting : ConfigSettingElement
-	{
-		protected override void OnConfigSettingChanged() {
-			base.OnConfigSettingChanged();
-			this.Name = this.GetRequiredSetting("name");
-			this.TypeName = this.GetSetting("type");
-		}
-
-		public string Name { get; private set; }
-		public string TypeName { get; private set; }
 	}
 }

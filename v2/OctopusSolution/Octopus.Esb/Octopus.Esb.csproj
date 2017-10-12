@@ -6,9 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Esb\Client\**" />
+    <EmbeddedResource Remove="Esb\Client\**" />
+    <None Remove="Esb\Client\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Esb\DefaultJsonSerializer.cs" />
     <Compile Remove="Esb\EsbResult.cs" />
+    <Compile Remove="Esb\ISerializer.cs" />
+    <Compile Remove="Esb\ISerializerFactory.cs" />
+    <Compile Remove="Esb\JsonNetSerializer.cs" />
     <Compile Remove="Esb\JsonSerializerFactory.cs" />
+    <Compile Remove="Esb\SerializerBase.cs" />
+    <Compile Remove="Esb\SerializerExtensions.cs" />
+    <Compile Remove="Esb\SerializerFactory.cs" />
+    <Compile Remove="Esb\SerializerFactoryInternal.cs" />
     <Compile Remove="Esb\Server\RequestContext.cs" />
     <Compile Remove="Esb\Server\RouteDataValueProviderFactory.cs" />
     <Compile Remove="Esb\Server\ServiceControllerBase.cs" />
@@ -24,11 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HTB.DevFx" Version="3.0.0.1" />
+    <PackageReference Include="HTB.DevFx" Version="3.0.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 
 </Project>

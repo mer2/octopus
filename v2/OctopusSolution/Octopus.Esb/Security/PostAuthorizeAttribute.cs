@@ -20,7 +20,7 @@ namespace Octopus.Security
 
 		public static bool Authorize(ServiceContext ctx, IAuthorizationIdentity identity) {
 #if !DEBUG
-			if(ctx.HttpContext.Request.HttpMethod != "POST") {
+			if(ctx.HttpContext.Request.Method != "POST") {
 				ctx.ResultInitialized = true;
 				ctx.ResultValue = HTB.DevFx.Core.AOPResult.Failed(-405, "非法请求");
 				return false;
