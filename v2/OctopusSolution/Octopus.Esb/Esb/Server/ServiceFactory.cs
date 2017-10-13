@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using HTB.DevFx;
 using HTB.DevFx.Core;
 using HTB.DevFx.Esb;
@@ -54,9 +53,19 @@ namespace Octopus.Esb.Server
 			}
 			var contentType = ctx.HttpContext.Request.ContentType;
 			var serializer = SerializerFactory.Current.GetSerializer(contentType) ?? SerializerFactory.Current.Default;
-			var aop = result as IAOPResult ?? AOPResult.Create(0, null, result, null);
-			context.Response.ContentType = serializer.ContentType;
-			serializer.Serialize(context.Response.Body, aop, new Hashtable {{ "ContentType", contentType } });
+			if (result != null) {
+				var isResult = result is IAOPResult;
+				if (!isResult) {
+					isResult = Array.Exists(result.GetType().GetInterfaces(), t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IAOPResult<>));
+				}
+				if (!isResult) {
+					result = AOPResult.Create(0, null, result, null);
+				}
+			} else {
+				result = AOPResult.Success();
+			}
+			context.Response.ContentType = serializer.ContentType + "; charset=utf-8";
+			serializer.Serialize(context.Response.Body, result, new Hashtable {{ "ContentType", contentType } });
 		}
 
 		protected internal virtual void ResultHandle(ServiceContext ctx, object result) {
@@ -206,15 +215,6 @@ namespace Octopus.Esb.Server
 		protected virtual IDictionary<string, ServiceItemSetting> GetServiceItemSettings() {
 			return this.services;
 		}
-
-		#region IMiddleware Members
-
-		public Task InvokeAsync(HttpContext context, RequestDelegate next) {
-			this.ProcessRequest(context);
-			return Task.CompletedTask;
-		}
-
-		#endregion
 
 		#region Events
 

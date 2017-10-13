@@ -1,7 +1,7 @@
 ﻿using System;
 using HTB.DevFx.Config;
 using Octopus.Esb.Server;
-[assembly: ConfigResource("res://Octopus.Esb.Config.Settings.config", Index = 1)]
+[assembly: ConfigResource("res://Octopus.Esb.Config.Settings.config")]
 
 namespace Octopus.Esb.Config
 {

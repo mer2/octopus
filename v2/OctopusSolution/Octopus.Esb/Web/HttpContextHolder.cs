@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Octopus.Esb.Server
+namespace Octopus.Web
 {
     public class HttpContextHolder : IMiddleware
     {

@@ -35,10 +35,12 @@
 
   <ItemGroup>
     <None Remove="Esb\Config\Settings.config" />
+    <None Remove="Web\Config\Settings.config" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Esb\Config\Settings.config" />
+    <EmbeddedResource Include="Web\Config\Settings.config" />
   </ItemGroup>
 
   <ItemGroup>

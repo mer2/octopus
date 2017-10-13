@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Octopus.Esb.Server;
+using Octopus.Web;
 
 namespace ConsoleApp1
 {
