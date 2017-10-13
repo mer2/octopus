@@ -12,5 +12,7 @@ namespace Octopus.Esb.Server
 		public IValueProvider ValueProvider { get; set; }
 		public bool Responsed { get; set; }
 		public ServiceItemSetting Setting { get; set; }
+
+		public static ServiceContext Current => ServiceFactory.ServiceContextCurrent.Value;
 	}
 }

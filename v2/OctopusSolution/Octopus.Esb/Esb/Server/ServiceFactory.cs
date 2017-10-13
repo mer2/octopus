@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using HTB.DevFx;
 using HTB.DevFx.Core;
@@ -132,10 +133,12 @@ namespace Octopus.Esb.Server
 			return matched;
 		}
 
+		internal static readonly AsyncLocal<ServiceContext> ServiceContextCurrent = new AsyncLocal<ServiceContext>();
 		public void ProcessRequest(HttpContext context) {
 			var serviceContext = new ServiceContext {
 				HttpContext = context
 			};
+			ServiceContextCurrent.Value = serviceContext;
 			try {
 				this.ProcessRequestInternal(serviceContext);
 			} catch(Exception e) {

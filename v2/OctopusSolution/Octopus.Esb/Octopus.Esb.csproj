@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <RootNamespace>Octopus</RootNamespace>
+    <Company>HTB</Company>
+    <Product>Octopus</Product>
+    <Description>Octopus Esb For .NET Core</Description>
+    <Authors>Octopus</Authors>
+    <Version>2.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

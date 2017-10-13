@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Octopus.Esb.Server;
 
 namespace ConsoleApp1
 {
@@ -19,6 +20,7 @@ namespace ConsoleApp1
 	    public static IWebHost BuildWebHost(string[] args) {
 		    return WebHost.CreateDefaultBuilder(args)
 				.UseStartup<Startup>()
+				.UseEsb()
 				.Build();
 	    }
     }

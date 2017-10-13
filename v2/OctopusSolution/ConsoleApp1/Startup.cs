@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Octopus.Esb.Server;
 
 namespace ConsoleApp1
 {
@@ -24,7 +23,7 @@ namespace ConsoleApp1
 			if(env.IsDevelopment()) {
 				app.UseDeveloperExceptionPage();
 			}
-			app.UseEsb();
+			//app.UseEsb();
 
 			// app.UseMvc();
 		}

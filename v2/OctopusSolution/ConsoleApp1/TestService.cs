@@ -1,4 +1,5 @@
 ﻿using ClassLibrary1;
+using Octopus.Esb.Server;
 
 namespace ConsoleApp1
 {
@@ -10,7 +11,8 @@ namespace ConsoleApp1
 	internal class TestService : ITestService
 	{
 		public string Hello(string world) {
-			return "hello world!" + world;
+			var ctx = HttpContextHolder.Current;
+			return ctx.TraceIdentifier + " hello world!" + world;
 		}
 	}
 }
