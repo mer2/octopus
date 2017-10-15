@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using HTB.DevFx;
@@ -65,7 +66,11 @@ namespace Octopus.Esb.Server
 				result = AOPResult.Success();
 			}
 			context.Response.ContentType = serializer.ContentType + "; charset=utf-8";
-			serializer.Serialize(context.Response.Body, result, new Hashtable {{ "ContentType", contentType } });
+			using (var ms = new MemoryStream()) {
+				serializer.Serialize(ms, result, new Hashtable { { "ContentType", contentType } });
+				context.Response.ContentLength = ms.Length;
+				ms.WriteTo(context.Response.Body);
+			}
 		}
 
 		protected internal virtual void ResultHandle(ServiceContext ctx, object result) {

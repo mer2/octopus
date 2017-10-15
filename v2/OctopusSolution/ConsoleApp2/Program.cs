@@ -14,10 +14,18 @@ namespace ConsoleApp2
 	        } catch { }
 			/*var test = DispatchProxy.Create<ITestService, MyDispatchProxy>();
 			test.Hello("");*/
-			var service = ObjectService.GetObject<ITestService>();
-			var str = service.Hello("ConsoleApp2");
-            Console.WriteLine(str);
-			Console.ReadLine();
+	        var test = ObjectService.GetObject<ITestService>();
+	        var str = test.Hello("1234");
+	        Console.WriteLine(str);
+	        var a = test.Test(10);
+	        Console.WriteLine(a);
+	        var result = test.GetEntity();
+	        Console.WriteLine(result.ResultAttachObject.Name);
+	        var entity = test.GetRawEntity();
+	        Console.WriteLine(entity.Name + "." + entity.Age);
+	        entity = test.SetRawEntity(entity);
+	        Console.WriteLine(entity.Name + "." + entity.Age);
+	        Console.ReadLine();
         }
 
 	    /*public class MyDispatchProxy : DispatchProxy

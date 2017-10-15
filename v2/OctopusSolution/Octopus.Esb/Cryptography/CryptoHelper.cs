@@ -89,11 +89,12 @@ namespace Octopus.Cryptography
 			if (encoding == null) {
 				encoding = Encoding.UTF8;
 			}
-			var hashAlgorithm = MD5.Create();
-			var encryptKeyBytes = hashAlgorithm.ComputeHash(encoding.GetBytes(encryptKey));
-			var encryptedBytes = RsaEncryptBase(stream, signKey, encryptKeyBytes, hashAlgorithm);
-			var result = ToBase64String(encryptedBytes);
-			return urlEncoding ? HttpUtility.UrlEncode(result, encoding) : result;
+			using (var hashAlgorithm = MD5.Create()) {
+				var encryptKeyBytes = hashAlgorithm.ComputeHash(encoding.GetBytes(encryptKey));
+				var encryptedBytes = RsaEncryptBase(stream, signKey, encryptKeyBytes, hashAlgorithm);
+				var result = ToBase64String(encryptedBytes);
+				return urlEncoding ? HttpUtility.UrlEncode(result, encoding) : result;
+			}
 		}
 
 		#endregion

@@ -7,12 +7,16 @@
     <Product>Octopus</Product>
     <Description>Octopus Esb For .NET Core</Description>
     <Authors>Octopus</Authors>
-    <Version>2.0.0.1</Version>
+    <Version>2.0.0.3</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Cryptography\**" />
     <Compile Remove="Esb\Client\**" />
+    <EmbeddedResource Remove="Cryptography\**" />
     <EmbeddedResource Remove="Esb\Client\**" />
+    <None Remove="Cryptography\**" />
     <None Remove="Esb\Client\**" />
   </ItemGroup>
 
@@ -44,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HTB.DevFx" Version="3.0.0.3" />
+    <PackageReference Include="HTB.DevFx" Version="3.0.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.0.0" />
